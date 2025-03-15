@@ -1,0 +1,6 @@
+__pycache__/
+venv/
+*.pyc
+*.log
+instance/
+.env  # If you have environment variables

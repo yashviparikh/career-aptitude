@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Career Recommendation</title>
+</head>
+<body>
+    <h1>Select Your Interests</h1>
+    <form method="POST">
+        {% for keyword in keywords %}
+        <input type="checkbox" name="keywords" value="{{keyword}}">
+        {{keyword}} <br>
+        {% endfor %}
+        <button type="submit">Get Results!</button>
+    </form>
+    </body>
+    </html>
