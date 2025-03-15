@@ -1,12 +1,17 @@
 CAREERS = {
-    "analytical": ["Data Scientist", "Statistician"],
-    "creative": ["Graphic Designer", "Copywriter"],
-    "technical": ["Software Developer", "Cybersecurity Expert"],
-    "marketing": ["SEO Specialist", "Digital Marketer"],
-    "leadership": ["Project Manager", "CEO"],
+    "data-driven": ["Data Scientist", "Business Analyst"],
+    "problem-solving": ["Consultant", "Risk Analyst"],
+    "artistic": ["Graphic Designer", "Illustrator"],
+    "visual": ["UI/UX Designer", "Videographer"],
+    "coding": ["Software Developer", "Game Developer"],
+    "engineering": ["Mechanical Engineer", "Electrical Engineer"],
+    "advertising": ["Marketing Manager", "Copywriter"],
+    "branding": ["SEO Specialist", "Digital Marketer"],
+    "management": ["Project Manager", "Operations Manager"],
+    "decision-making": ["CEO", "Entrepreneur"],
 }
 
-RELATED_KEYWORDS = {
+MAIN_KEYWORDS = {
     "analytical": ["data-driven", "problem-solving"],
     "creative": ["artistic", "visual"],
     "technical": ["coding", "engineering"],

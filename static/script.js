@@ -25,10 +25,18 @@ document.addEventListener("DOMContentLoaded",function()
                     suggestedcontainer.innerHTML="";
                     data.forEach(keyword=>
                         {
-                            const keywordElement=document.createElement("span");
-                            keywordElement.textContent=keyword;
-                            keywordElement.style.marginRight="10px";
-                            suggestedcontainer.appendChild(keywordElement);
+                            const label=document.createElement("label");
+                            label.style.marginRight="10px";
+
+                            const checkbox=document.createElement("input");
+                            checkbox.type="checkbox";
+                            checkbox.name="keywords";
+                            checkbox.value=(keyword);
+                            checkbox.classList.add(keyword-checkbox);
+
+                            label.appendChild(checkbox);
+                            label.appendChild(document.createTextNode(" " + keyword));
+                            suggestedcontainer.appendChild(label);
                         });
                 })
             .catch(error=> console.error("Fetch error: ",error));
