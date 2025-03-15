@@ -1,16 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Career Recommendation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Counseling</title>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 <body>
     <h1>Select Your Interests</h1>
     <form method="POST">
-        {% for keyword in keywords %}
-        <input type="checkbox" name="keywords" value="{{keyword}}">
-        {{keyword}} <br>
-        {% endfor %}
-        <button type="submit">Get Results!</button>
+        <div id="keyword-container">
+            {% for keyword in keywords %}
+                <label>
+                    <input type="checkbox" name="keywords" value="{{ keyword }}" class="keyword-checkbox">
+                    {{ keyword }}
+                </label><br>
+            {% endfor %}
+        </div>
+
+        <h2>Suggested Keywords:</h2>
+        <div id="suggested-keywords"></div>
+
+        <button type="submit">Get Career Suggestions</button>
     </form>
-    </body>
-    </html>
+</body>
+</html>
