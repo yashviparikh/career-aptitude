@@ -9,7 +9,7 @@ def index():
         if not selected_skills:
             return render_template("index.html",skills=get_all_skills(),error="no skill selected")
         preferences=request.form.getlist("preferences")
-        careers=recommend_tech_careers(selected_skills,include_scores=True,filter_preferences=preferences)
+        careers=recommend_tech_careers(selected_skills,include_scores=False,filter_preferences=preferences)
         return render_template("results.html",careers=careers)
     return render_template("index.html",skills=get_all_skills())
 

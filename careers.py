@@ -142,6 +142,7 @@ def recommend_tech_careers(selected_skills,include_scores=False,filter_preferenc
         sorted_careers=filtered_careers
     if include_scores:
         return [{"career":career,"score":score} for career,score in sorted_careers]
+    print(sorted_careers)
     return [career for career,_ in sorted_careers]
 
 def get_role_preferences(career):
