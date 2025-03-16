@@ -7,22 +7,61 @@
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 <body>
-    <h1>Select Your Interests</h1>
+    <h1>Career Counseling</h1>
+    
+    <!-- Form to submit selected skills and preferences -->
     <form method="POST">
-        <div id="keyword-container">
-            {% for keyword in keywords %}
-                <label>
-                    <input type="checkbox" name="keywords" value="{{ keyword }}" class="keyword-checkbox">
-                    {{ keyword }}
-                </label><br>
-            {% endfor %}
+        
+        <!-- Display main skills dynamically -->
+        <div id="skill-selection">
+            <h3>Select Your Skills</h3>
+            <div id="main-skills">
+                {% for skill in skills %}
+                    <label style="margin-right: 10px;">
+                        <input type="checkbox" name="skills" value="{{ skill }}" class="skill-checkbox">
+                        {{ skill }}
+                    </label>
+                {% endfor %}
+            </div>
+            <h4>Suggested Skills</h4>
+            <div id="suggested-skills">
+                <!-- Suggested skills will be dynamically added here by script.js -->
+            </div>
         </div>
 
-        <h2>Suggested Keywords:</h2>
-        <div id="suggested-keywords">
-            
+        <!-- Display user preferences -->
+        <div id="preference-selection">
+            <h3>Select Your Preferences</h3>
+            <div id="user-preferences">
+                <!-- These preferences are hardcoded for now; they can also be passed dynamically if needed -->
+                <label style="margin-right: 10px;">
+                    <input type="checkbox" name="preferences" value="coding-based" class="preference-checkbox">
+                    Coding-based
+                </label>
+                <label style="margin-right: 10px;">
+                    <input type="checkbox" name="preferences" value="managerial-based" class="preference-checkbox">
+                    Managerial-based
+                </label>
+                <label style="margin-right: 10px;">
+                    <input type="checkbox" name="preferences" value="remote" class="preference-checkbox">
+                    Remote
+                </label>
+                <label style="margin-right: 10px;">
+                    <input type="checkbox" name="preferences" value="in-office" class="preference-checkbox">
+                    In-office
+                </label>
+                <label style="margin-right: 10px;">
+                    <input type="checkbox" name="preferences" value="teamwork" class="preference-checkbox">
+                    Teamwork
+                </label>
+                <label style="margin-right: 10px;">
+                    <input type="checkbox" name="preferences" value="alone" class="preference-checkbox">
+                    Alone
+                </label>
+            </div>
         </div>
 
+        <!-- Submit button -->
         <button type="submit">Get Career Suggestions</button>
     </form>
 </body>
