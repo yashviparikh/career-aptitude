@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded",function()
             {
                 console.log("API Response: ", data);
                 suggestedContainer.innerHTML="";
-                preferencesContainer.innerHTML="";
+                //preferencesContainer.innerHTML="";
                 data.forEach(skill=>
                     {
                         const label=document.createElement("label");

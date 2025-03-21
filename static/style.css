@@ -61,21 +61,7 @@ input[type="checkbox"]:checked + label {
     font-weight: bold;
 }
 
-/* Button Styling */
-button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
 
-button:hover {
-    background: #0056b3;
-}
 
 /* Responsive */
 @media (max-width: 600px) {

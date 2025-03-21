@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Career Counseling</title>
+    <style>
+        #preferencesTab, #suggestions 
+        {
+            display: none;
+        }
+    </style>
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 <body>
@@ -26,30 +32,6 @@
         <div id="preference-selection">
             <h3>Select Your Preferences</h3>
             <div id="user-preferences">
-                <label style="margin-right: 10px;">
-                    <input type="checkbox" name="preferences" value="coding-based" class="preference-checkbox">
-                    Coding-based
-                </label>
-                <label style="margin-right: 10px;">
-                    <input type="checkbox" name="preferences" value="managerial-based" class="preference-checkbox">
-                    Managerial-based
-                </label>
-                <label style="margin-right: 10px;">
-                    <input type="checkbox" name="preferences" value="remote" class="preference-checkbox">
-                    Remote
-                </label>
-                <label style="margin-right: 10px;">
-                    <input type="checkbox" name="preferences" value="in-office" class="preference-checkbox">
-                    In-office
-                </label>
-                <label style="margin-right: 10px;">
-                    <input type="checkbox" name="preferences" value="teamwork" class="preference-checkbox">
-                    Teamwork
-                </label>
-                <label style="margin-right: 10px;">
-                    <input type="checkbox" name="preferences" value="alone" class="preference-checkbox">
-                    Alone
-                </label>
             </div>
         </div>
         <button type="submit">Get Career Suggestions</button>
