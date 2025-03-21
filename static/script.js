@@ -5,12 +5,28 @@ document.addEventListener("DOMContentLoaded",function()
     updatePreferenceSection();
     document.addEventListener("change",function(event)
     {
-        if (event.target.classList.contains("skill-checkbox"))
+        if (event.target.classList.contains("skill-checkbox"||event.target.classList.contains("preference-checkbox")))
         {
-            updateRelatedSkills();
+            toggleSelection(event.target);
+            if (event.target.classList.contains("skill-checkbox")) 
+            {
+                updateRelatedSkills();
+            }
         }
     });
 
+    function toggleSelection(checkbox) {
+        const label = checkbox.parentElement;
+        if (checkbox.checked) {
+            label.style.background = "rgba(0, 0, 128, 1)"; // Orange
+            label.style.color = "white";
+            label.style.border = "2px solid rgba(0, 0, 128, 1)";
+        } else {
+            label.style.background = "rgba(0, 123, 255, 0.2)"; // Default blue
+            label.style.color = "#0056b3";
+            label.style.border = "2px solid rgba(0, 123, 255, 0.4)";
+        }
+    }
 
     function updateRelatedSkills()
     {
@@ -49,7 +65,12 @@ document.addEventListener("DOMContentLoaded",function()
                         label.appendChild(checkbox);
                         label.appendChild(document.createTextNode(" " + skill));
                         suggestedContainer.appendChild(label);
-                            });
+                        
+                        checkbox.addEventListener("change", function () 
+                        {
+                            toggleSelection(checkbox);
+                        });
+                    });
             })
             .catch(error=> console.error("Fetch error: ",error));
     }
@@ -71,6 +92,11 @@ function updatePreferenceSection()
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(" " + pref));
             preferencesContainer.appendChild(label);
+
+            checkbox.addEventListener("change", function () 
+            {
+                toggleSelection(checkbox);
+            });
         });
 }
 });

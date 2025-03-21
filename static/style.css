@@ -1,71 +1,73 @@
-/* General Page Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
-    color: #333;
-    text-align: center;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Form Container */
+h1 {
+    color: #333;
+    margin-top: 20px;
+}
+
 form {
     background: white;
-    max-width: 500px;
-    margin: 20px auto;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    min-width: 300px;
 }
 
-/* Headings */
-h1 {
-    font-size: 24px;
-    color: #444;
-    margin-bottom: 15px;
-}
-
-h2 {
-    font-size: 20px;
-    margin-top: 20px;
-    color: #666;
-}
-
-/* Checkbox Grid */
-#keyword-container, #suggested-keywords {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+#skill-selection, #preference-selection {
     margin-bottom: 20px;
 }
 
-/* Styled Checkboxes */
-input[type="checkbox"] {
-    display: none; /* Hide default checkbox */
+h3, h4 {
+    color: #444;
 }
 
-/* Default Keyword Label */
-input[type="checkbox"] + label {
-    display: inline-block;
-    padding: 8px 12px;
-    background: #e0e0e0;
+#main-skills, #suggested-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.skill-checkbox {
+    display: none;
+}
+
+label {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(0, 123, 255, 0.2);
+    border: 2px solid rgba(0, 123, 255, 0.4);
+    color: #0056b3;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+label:hover {
+    background: rgba(0, 123, 255, 0.4);
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    font-size: 16px;
+    transition: background 0.3s;
 }
 
-/* Selected Checkbox Highlight */
-input[type="checkbox"]:checked + label {
-    background: #007bff;
-    color: white;
-    font-weight: bold;
-}
-
-
-
-/* Responsive */
-@media (max-width: 600px) {
-    form {
-        width: 90%;
-    }
+button:hover {
+    background-color: #0056b3;
 }
