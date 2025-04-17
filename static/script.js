@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded",function()
 {
     const suggestedContainer=document.getElementById("suggested-skills");
     const preferencesContainer=document.getElementById("user-preferences");
+    const selectedSuggestions=document.getElementById("selected-suggestions");
     updatePreferenceSection();
     document.addEventListener("change",function(event)
     {
@@ -98,5 +99,14 @@ function updatePreferenceSection()
                 toggleSelection(checkbox);
             });
         });
+}
+function updateselectedskillssection()
+{
+    selectedSuggestions.innerHTML="";
+    const selectedsuggestedSkills=Array.from(
+        document.querySelectorAll(".skill-checkbox"))
+        .filter(checkbox=>checkbox.checked)
+        .map(checkbox=>checkbox.value);   
+    console.log("selected skills: ",selectedsuggestedSkills);
 }
 });
