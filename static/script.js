@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded",function()
     function toggleSelection(checkbox) {
         const label = checkbox.parentElement;
         if (checkbox.checked) {
-            label.style.background = "rgba(0, 0, 128, 1)"; // Orange
+            label.style.background = "rgba(0, 0, 128, 1)"; // Navy blue
             label.style.color = "white";
             label.style.border = "2px solid rgba(0, 0, 128, 1)";
         } else {
