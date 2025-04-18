@@ -3,12 +3,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Career SUGGESTIONS!!!</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='resultscss.css')}}">
     </head>
     <body>
         <h1>Your recommmended careers</h1>
         <ul>
-            {% for career in careers %}
-            <li>{{career}}</li>
+            {% for item in careers %}
+            <li><a href={{item.url}} target="_blank">{{item.career}}</a></li>
             {% endfor%}
         </ul>
         <a href="/">Go back</a>

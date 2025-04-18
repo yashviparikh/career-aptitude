@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request,jsonify
 from careers import tech_skill_preferences_data,recommend_tech_careers
+from roadmap import addurl
 app= Flask(__name__)
 
 @app.route("/")
@@ -14,7 +15,8 @@ def index():
             return render_template("index.html",skills=get_all_skills(),error="no skill selected")
         preferences=request.form.getlist("preferences")
         careers=recommend_tech_careers(selected_skills,include_scores=False,filter_preferences=preferences)
-        return render_template("results.html",careers=careers)
+        careerswithurl=addurl(careers)
+        return render_template("results.html",careers=careerswithurl)
     return render_template("index.html",skills=get_all_skills())
 
 def get_all_skills():
