@@ -1,3 +1,4 @@
+let hasScrolledToPreferences=false;
 document.addEventListener("DOMContentLoaded",function()
 {
     const suggestedContainer=document.getElementById("suggested-skills");
@@ -40,6 +41,17 @@ document.addEventListener("DOMContentLoaded",function()
             console.error("No skills selected. Skipping fetch request.");
             return; 
         }
+
+        if(!window.hasScrolledToPreferences)
+        {
+            const preferencessection=document.getElementById('user-preferences');
+            if(preferencessection)
+            {
+                preferencessection.scrollIntoView({behavior:"smooth"});
+                window.hasScrolledToPreferences=false;
+            }
+        }
+
         fetch("/related_keywords",
         {
             method:"POST",
