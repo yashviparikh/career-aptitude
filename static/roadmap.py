@@ -1,0 +1,66 @@
+career_roadmaps = {
+    "Software Engineer": "https://roadmap.sh/software-engineer",
+    "Backend Developer": "https://roadmap.sh/backend-developer",
+    "Full Stack Developer": "https://roadmap.sh/full-stack-developer",
+    "Mobile App Developer": "https://roadmap.sh/mobile-app-developer",
+    "iOS Developer": "https://roadmap.sh/ios-developer",
+    "Android Developer": "https://roadmap.sh/android-developer",
+    "Data Analyst": "https://roadmap.sh/data-analyst",
+    "Business Intelligence Analyst": "https://roadmap.sh/business-intelligence-analyst",
+    "Data Scientist": "https://roadmap.sh/data-scientist",
+    "Operations Analyst": "https://roadmap.sh/operations-analyst",
+    "Marketing Analyst": "https://roadmap.sh/marketing-analyst",
+    "Cloud Engineer": "https://roadmap.sh/cloud-engineer",
+    "DevOps Engineer": "https://roadmap.sh/devops-engineer",
+    "Site Reliability Engineer (SRE)": "https://roadmap.sh/site-reliability-engineer",
+    "Cybersecurity Analyst": "https://roadmap.sh/cybersecurity-analyst",
+    "Penetration Tester": "https://roadmap.sh/penetration-tester",
+    "Security Engineer": "https://roadmap.sh/security-engineer",
+    "Network Administrator": "https://roadmap.sh/network-administrator",
+    "System Administrator": "https://roadmap.sh/system-administrator",
+    "UI Designer": "https://roadmap.sh/ui-designer",
+    "UX Researcher": "https://roadmap.sh/ux-researcher",
+    "Interaction Designer": "https://roadmap.sh/interaction-designer",
+    "Blockchain Developer": "https://roadmap.sh/blockchain-developer",
+    "Web3 Developer": "https://roadmap.sh/web3-developer",
+    "Smart Contract Developer": "https://roadmap.sh/smart-contract-developer",
+    "Product Manager": "https://roadmap.sh/product-manager",
+    "Tech Lead": "https://roadmap.sh/tech-lead",
+    "Project Manager": "https://roadmap.sh/project-manager"
+}
+
+# roadmaps.py
+
+# Dictionary of career names and their corresponding roadmap URLs
+career_roadmaps = {
+    "Software Engineer": "https://roadmap.sh/software-engineer",
+    "Backend Developer": "https://roadmap.sh/backend-developer",
+    "Full Stack Developer": "https://roadmap.sh/full-stack-developer",
+    "Mobile App Developer": "https://roadmap.sh/mobile-app-developer",
+    "iOS Developer": "https://roadmap.sh/ios-developer",
+    "Android Developer": "https://roadmap.sh/android-developer",
+    "Data Analyst": "https://roadmap.sh/data-analyst",
+    "Business Intelligence Analyst": "https://roadmap.sh/business-intelligence-analyst",
+    "Data Scientist": "https://roadmap.sh/data-scientist",
+    "Operations Analyst": "https://roadmap.sh/operations-analyst",
+    "Marketing Analyst": "https://roadmap.sh/marketing-analyst",
+    "Cloud Engineer": "https://roadmap.sh/cloud-engineer",
+    "DevOps Engineer": "https://roadmap.sh/devops-engineer",
+    "Site Reliability Engineer (SRE)": "https://roadmap.sh/site-reliability-engineer",
+    "Cybersecurity Analyst": "https://roadmap.sh/cybersecurity-analyst",
+    "Penetration Tester": "https://roadmap.sh/penetration-tester",
+    "Security Engineer": "https://roadmap.sh/security-engineer",
+    "Network Administrator": "https://roadmap.sh/network-administrator",
+    "System Administrator": "https://roadmap.sh/system-administrator",
+    "UI Designer": "https://roadmap.sh/ui-designer",
+    "UX Researcher": "https://roadmap.sh/ux-researcher",
+    "Interaction Designer": "https://roadmap.sh/interaction-designer",
+    "Blockchain Developer": "https://roadmap.sh/blockchain-developer",
+    "Web3 Developer": "https://roadmap.sh/web3-developer",
+    "Smart Contract Developer": "https://roadmap.sh/smart-contract-developer",
+    "Product Manager": "https://roadmap.sh/product-manager",
+    "Tech Lead": "https://roadmap.sh/tech-lead",
+    "Project Manager": "https://roadmap.sh/project-manager"
+}
+
+

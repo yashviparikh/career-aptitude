@@ -2,7 +2,11 @@ from flask import Flask,render_template,request,jsonify
 from careers import tech_skill_preferences_data,recommend_tech_careers
 app= Flask(__name__)
 
-@app.route("/", methods=["GET","POST"])
+@app.route("/")
+def home():
+    return render_template("home.html")
+
+@app.route("/keywords", methods=["GET","POST"])
 def index():
     if request.method=="POST":
         selected_skills=request.form.getlist("skills")
