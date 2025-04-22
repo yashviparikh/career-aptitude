@@ -4,3 +4,4 @@ venv/
 *.log
 instance/
 .env  # If you have environment variables
+*.mp4
