@@ -3,5 +3,5 @@ venv/
 *.pyc
 *.log
 instance/
-.env  # If you have environment variables
+.env  
 *.mp4

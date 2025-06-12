@@ -1,8 +1,19 @@
-from flask import Flask, render_template, request, jsonify
-from careers import tech_skill_preferences_data, recommend_tech_careers
+from flask import Flask, render_template, request, jsonify,current_app
+from db import tech_skills_collection
+from careers import recommend_tech_careers
 from roadmap import addurl
 
 app = Flask(__name__)
+
+def getdata():
+    tech_skills_data={}
+    for doc in tech_skills_collection.find():
+        tech_skills_data[doc["category"]]={
+            "skills":doc["skills"],
+            "domains":doc["domains"]
+        }
+    return tech_skills_data
+app.config["tech_skills_data"]=getdata()
 
 @app.route("/")
 def home():
@@ -22,7 +33,8 @@ def index():
 
 def get_all_skills():
     skills = set()
-    for category, details in tech_skill_preferences_data.items():
+    tech_data=current_app.config["tech_skills_data"]
+    for category, details in tech_data.items():
         skills.update(details["skills"])
     return sorted(list(skills))
 
@@ -34,7 +46,8 @@ def get_related_keywords():
     
     # Create a map of skills to their categories
     skill_categories = {}
-    for category, details in tech_skill_preferences_data.items():
+    tech_data=current_app.config["tech_skills_data"]
+    for category, details in tech_data.items():
         for skill in details["skills"]:
             if skill not in skill_categories:
                 skill_categories[skill] = set()
@@ -49,8 +62,8 @@ def get_related_keywords():
     # Get all skills from selected categories
     suggestions = set()
     for category in selected_categories:
-        if category in tech_skill_preferences_data:
-            suggestions.update(tech_skill_preferences_data[category]["skills"])
+        if category in tech_data:
+            suggestions.update(tech_data[category]["skills"])
     
     # Remove already selected skills
     suggestions = suggestions - set(selected)
