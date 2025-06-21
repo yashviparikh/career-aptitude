@@ -151,7 +151,8 @@ def recommend_tech_careers(selected_skills,include_scores=False,filter_preferenc
 def get_role_preferences(career):
     tech_data=current_app.config["tech_skills_data"]
     for category,details in tech_data.items():
-        for domain,domain_details in details["domains"].items():
+        for domain_details in details["domains"]:
+            domain=domain_details["name"]
             for role in domain_details["roles"]:
                 if role["name"]==career:
                     return role["preferences"]
