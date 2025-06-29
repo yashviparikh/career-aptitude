@@ -1,0 +1,266 @@
+tech_skill_preferences_data = {
+    "Programming": {
+        "skills": ["Python", "JavaScript", "Java", "C++", "Ruby", "Go", "Rust", "C#", "Perl", "Kotlin", "Swift"],
+        "domains": {
+            "Software Development": {
+                "roles": [
+                    {"name": "Software Engineer", "preferences": ["teamwork", "coding-based", "remote"]},
+                    {"name": "Backend Developer", "preferences": ["alone", "coding-based", "remote"]},
+                    {"name": "Full Stack Developer", "preferences": ["teamwork", "coding-based", "remote or in-office"]},
+                ],
+            },
+            "Mobile Development": {
+                "roles": [
+                    {"name": "Mobile App Developer", "preferences": ["teamwork", "coding-based", "remote or in-office"]},
+                    {"name": "iOS Developer", "preferences": ["teamwork", "coding-based", "remote or in-office"]},
+                    {"name": "Android Developer", "preferences": ["alone", "coding-based", "remote or in-office"]},
+                ],
+            },
+        },
+    },
+    "Data Analysis & Visualization": {
+        "skills": [
+            "Excel", "Tableau", "Power BI", "SQL", "Python (Pandas/NumPy)", "R", "Matplotlib", "Seaborn",
+            "Data Wrangling", "Data Cleaning", "ETL"
+        ],
+        "domains": {
+            "Data Science & AI": {
+                "roles": [
+                    {"name": "Data Analyst", "preferences": ["alone", "coding-based", "remote or in-office"]},
+                    {"name": "Business Intelligence Analyst", "preferences": ["teamwork", "managerial-based", "in-office"]},
+                    {"name": "Data Scientist", "preferences": ["alone", "coding-based", "remote"]},
+                ],
+            },
+            "Business Analytics": {
+                "roles": [
+                    {"name": "Operations Analyst", "preferences": ["teamwork", "managerial-based", "in-office"]},
+                    {"name": "Marketing Analyst", "preferences": ["teamwork", "coding-based", "remote or in-office"]},
+                ],
+            },
+        },
+    },
+    "Cloud & DevOps": {
+        "skills": [
+            "AWS", "Azure", "Google Cloud", "Kubernetes", "Docker", "Terraform", "CI/CD", "Ansible", "Jenkins",
+            "Linux Administration", "Cloud Security", "Serverless Architecture"
+        ],
+        "domains": {
+            "Cloud Computing & DevOps": {
+                "roles": [
+                    {"name": "Cloud Engineer", "preferences": ["teamwork", "coding-based", "remote"]},
+                    {"name": "DevOps Engineer", "preferences": ["alone", "coding-based", "remote or in-office"]},
+                    {"name": "Site Reliability Engineer (SRE)", "preferences": ["teamwork", "coding-based", "remote"]},
+                ],
+            },
+        },
+    },
+    "Networking & Security": {
+        "skills": [
+            "Network Security", "Routing", "Firewall Configuration", "VPN Setup", "Cryptography", "Penetration Testing",
+            "Incident Response", "Disaster Recovery", "Cyber Threat Intelligence", "Wireless Networking"
+        ],
+        "domains": {
+            "Cybersecurity": {
+                "roles": [
+                    {"name": "Cybersecurity Analyst", "preferences": ["teamwork", "coding-based", "remote"]},
+                    {"name": "Penetration Tester", "preferences": ["alone", "coding-based", "remote or in-office"]},
+                    {"name": "Security Engineer", "preferences": ["teamwork", "coding-based", "in-office"]},
+                ],
+            },
+            "Networking & IT Support": {
+                "roles": [
+                    {"name": "Network Administrator", "preferences": ["teamwork", "coding-based", "in-office"]},
+                    {"name": "System Administrator", "preferences": ["alone", "coding-based", "in-office"]},
+                ],
+            },
+        },
+    },
+    "UI/UX & Design": {
+        "skills": [
+            "UI/UX Design", "Figma", "Sketch", "Adobe XD", "Wireframing", "User Research", "Prototyping", "Interaction Design",
+            "User Testing", "Motion Design"
+        ],
+        "domains": {
+            "UI/UX Design": {
+                "roles": [
+                    {"name": "UI Designer", "preferences": ["teamwork", "coding-based", "remote"]},
+                    {"name": "UX Researcher", "preferences": ["teamwork", "coding-based", "remote"]},
+                    {"name": "Interaction Designer", "preferences": ["alone", "coding-based", "in-office"]},
+                ],
+            },
+        },
+    },
+    "Blockchain & Web3": {
+        "skills": [
+            "Blockchain", "Smart Contracts", "Ethereum", "Solidity", "Web3", "Hyperledger", "DApps", "DeFi", "NFTs",
+            "Consensus Algorithms"
+        ],
+        "domains": {
+            "Blockchain & Web3": {
+                "roles": [
+                    {"name": "Blockchain Developer", "preferences": ["teamwork", "coding-based", "remote"]},
+                    {"name": "Web3 Developer", "preferences": ["teamwork", "coding-based", "remote or in-office"]},
+                    {"name": "Smart Contract Developer", "preferences": ["alone", "coding-based", "remote"]},
+                ],
+            },
+        },
+    },
+    "Leadership & Management": {
+        "skills": [
+            "Agile", "Scrum", "Project Management", "Tech Leadership", "Product Management", "Risk Management", 
+            "Team Building", "Communication", "Strategic Planning"
+        ],
+        "domains": {
+            "Tech Management & Leadership": {
+                "roles": [
+                    {"name": "Product Manager", "preferences": ["teamwork", "managerial-based", "in-office"]},
+                    {"name": "Tech Lead", "preferences": ["teamwork", "managerial-based", "remote or in-office"]},
+                    {"name": "Project Manager", "preferences": ["teamwork", "managerial-based", "in-office"]},
+                ],
+            },
+        },
+    },
+}
+def examplebuilding():
+    examples=[]
+    for category,details in tech_skill_preferences_data.items():
+        for skill in details["skills"]:
+            for domainname,domain in details["domains"].items():
+                for role in domain["roles"]:
+                    examples.append({
+                    "rolename":role["name"],
+                    "category":category,
+                    "skill":skill,
+                    "teamwork":1 if "teamwork" in role["preferences"] else 0,
+                    "alone":1 if "alone" in role["preferences"] else 0,
+                    "coding-based":1 if "coding-based" in role["preferences"] else 0,
+                    "managerial-based":1 if "managerial-based" in role["preferences"] else 0,
+                    "remote":1 if "remote" in role["preferences"] else 0,
+                    "in-office":1 if "in-office" in role["preferences"] else 0
+                    })
+    return examples 
+#print(examplebuilding())
+
+def skillencoding():
+    skill_id={}
+    count=0
+    for category,details in tech_skill_preferences_data.items():
+        for skill in details["skills"]:
+            if skill not in skill_id:
+                skill_id[skill]=count
+                count+=1
+    return skill_id
+#skillencoding()
+#{'rolename': 'Project Manager', 'category': 'Leadership & Management', 'skill': 'Strategic Planning',
+# 'teamwork': 1, 'alone': 0, 'coding-based': 0, 'managerial-based': 1, 'remote': 0, 'in-office': 1}]
+# def makingxandy():
+#     x=[]
+#     y=[]
+#     examples=examplebuilding()
+#     skillids=skillencoding()
+#     for i in examples:
+#         role=i["rolename"]
+#         skill=i["skill"]
+#         if skill in skillids:
+#             skillid=skillids[skill]
+#         l=[skillid,i["teamwork"],i["alone"],i["coding-based"],i["managerial-based"],i["remote"],i["in-office"]]
+#         x.append(l)
+#         y.append(role)
+#     return(x,y)
+#print(makingxandy())
+
+class Node:
+    def __init__(self,feature=None,threshold=None,left=None,right=None,value=None):
+        self.feature=feature
+        self.threshold=threshold
+        self.left=left
+        self.right=right
+        self.value=value
+
+    def ginicalc(self,examples):
+        count={}
+        total=0
+        gini=0
+        for i in examples:
+            if i["rolename"] in count:
+                count[i["rolename"]]+=1
+            else:
+                count[i["rolename"]]=1
+            total+=1
+        for j in count:
+            gini+=(count[j]/total)**2
+        gini=1-gini
+        return gini
+    
+    def splitdata(self,examples):
+        features=['skill','teamwork','alone','coding-based','managerial-based','remote','in-office']
+        bestgini=10
+        bestfeature=None
+        for feature in features:
+            left,right=[],[]
+            for example in examples:
+                if example[feature]==0:
+                    left.append(example)
+                else:
+                    right.append(example)
+            if len(left)==0 or len(right)==0:
+                continue
+            leftgini=self.ginicalc(left)
+            rightgini=self.ginicalc(right)
+            combinedgini=(len(left)/len(examples) * leftgini) + (len(right)/len(examples) * rightgini)
+            if combinedgini<bestgini:
+                bestgini=combinedgini
+                bestfeature=feature
+        return(bestgini,bestfeature)
+    
+    def buildtree(self,examples,depth,maxdepth=5):
+        l=dict()
+        left,right=[],[]
+        for i in examples:
+            if i["rolename"] in l:
+                l[i["rolename"]]+=1
+            else:
+                l[i["rolename"]]=1
+        k=set(l.keys())
+        if len(k)==1:
+            return Node(value=list(k)[0])
+        if depth>=maxdepth:
+            common=max(l, key=l.get)
+            return Node(value=common)
+        gini,feature=self.splitdata(examples)
+        if feature is None:
+            common=max(l,key=l.get)
+            return Node(value=common)
+        for i in examples:
+            if i[feature]==0:
+                left.append(i)
+            else:
+                right.append(i)
+        lefttree=self.buildtree(left,depth+1,maxdepth=5)
+        righttree=self.buildtree(right,depth+1,maxdepth=5)
+        return Node(feature=feature,left=lefttree,right=righttree)
+    
+def predict(tree,test):
+    if tree.value is not None:
+        return tree.value
+    feature=tree.feature
+    print(feature)
+    if test[feature]==0:
+        return predict(tree.left,test)
+    else:
+        return predict(tree.right,test)
+n=Node()
+tree=n.buildtree(examplebuilding(),depth=0)
+test={
+    'skill': 'Routing',
+    'teamwork': 0,
+    'alone': 1,
+    'coding-based': 0,
+    'managerial-based': 1,
+    'remote': 0,
+    'in-office': 1
+}
+print(predict(tree,test))
+#gini,feature=n.splitdata(examplebuilding())
+#print("gini",gini)
+#print("feature",feature)
