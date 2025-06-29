@@ -153,20 +153,20 @@ def skillencoding():
 #skillencoding()
 #{'rolename': 'Project Manager', 'category': 'Leadership & Management', 'skill': 'Strategic Planning',
 # 'teamwork': 1, 'alone': 0, 'coding-based': 0, 'managerial-based': 1, 'remote': 0, 'in-office': 1}]
-# def makingxandy():
-#     x=[]
-#     y=[]
-#     examples=examplebuilding()
-#     skillids=skillencoding()
-#     for i in examples:
-#         role=i["rolename"]
-#         skill=i["skill"]
-#         if skill in skillids:
-#             skillid=skillids[skill]
-#         l=[skillid,i["teamwork"],i["alone"],i["coding-based"],i["managerial-based"],i["remote"],i["in-office"]]
-#         x.append(l)
-#         y.append(role)
-#     return(x,y)
+def makingxandy():
+    x=[]
+    y=[]
+    examples=examplebuilding()
+    skillids=skillencoding()
+    for i in examples:
+        role=i["rolename"]
+        skill=i["skill"]
+        if skill in skillids:
+            skillid=skillids[skill]
+        l=[skillid,i["teamwork"],i["alone"],i["coding-based"],i["managerial-based"],i["remote"],i["in-office"]]
+        x.append(l)
+        y.append(role)
+    return(x,y)
 #print(makingxandy())
 
 class Node:
@@ -177,89 +177,89 @@ class Node:
         self.right=right
         self.value=value
 
-    def ginicalc(self,examples):
+    def ginicalc(self,y):
         count={}
         total=0
         gini=0
-        for i in examples:
-            if i["rolename"] in count:
-                count[i["rolename"]]+=1
+        for i in y:
+            if i in count:
+                count[i]+=1
             else:
-                count[i["rolename"]]=1
-            total+=1
+                count[i]=1
+            total=len(y)
         for j in count:
             gini+=(count[j]/total)**2
         gini=1-gini
         return gini
     
-    def splitdata(self,examples):
-        features=['skill','teamwork','alone','coding-based','managerial-based','remote','in-office']
+    def splitdata(self,x,y):
         bestgini=10
         bestfeature=None
-        for feature in features:
-            left,right=[],[]
-            for example in examples:
-                if example[feature]==0:
-                    left.append(example)
+        for featureindex in range(len(x[0])):
+            xleft,xright,yleft,yright=[],[],[],[]
+            for i in range(len(x)):
+                if x[i][featureindex]==0:
+                    xleft.append(x[i])
+                    yleft.append(y[i])
                 else:
-                    right.append(example)
-            if len(left)==0 or len(right)==0:
+                    xright.append(x[i])
+                    yright.append(y[i])
+            if len(xleft)==0 or len(xright)==0:
                 continue
-            leftgini=self.ginicalc(left)
-            rightgini=self.ginicalc(right)
-            combinedgini=(len(left)/len(examples) * leftgini) + (len(right)/len(examples) * rightgini)
+            leftgini=self.ginicalc(yleft)
+            rightgini=self.ginicalc(yright)
+            combinedgini=(len(yleft)/len(y) * leftgini) + (len(yright)/len(y) * rightgini)
             if combinedgini<bestgini:
                 bestgini=combinedgini
-                bestfeature=feature
+                bestfeature=featureindex
         return(bestgini,bestfeature)
     
-    def buildtree(self,examples,depth,maxdepth=5):
+    def buildtree(self,x,y,depth,maxdepth=5):
         l=dict()
         left,right=[],[]
-        for i in examples:
-            if i["rolename"] in l:
-                l[i["rolename"]]+=1
+        for i in y:
+            if i in l:
+                l[i]+=1
             else:
-                l[i["rolename"]]=1
+                l[i]=1
         k=set(l.keys())
         if len(k)==1:
             return Node(value=list(k)[0])
         if depth>=maxdepth:
             common=max(l, key=l.get)
             return Node(value=common)
-        gini,feature=self.splitdata(examples)
+        gini,feature=self.splitdata(x,y)
         if feature is None:
             common=max(l,key=l.get)
             return Node(value=common)
-        for i in examples:
-            if i[feature]==0:
-                left.append(i)
+        xleft,xright,yleft,yright=[],[],[],[]
+        for i in range(len(x)):
+            if x[i][feature]==0:
+                xleft.append(x[i])
+                yleft.append(y[i])
             else:
-                right.append(i)
-        lefttree=self.buildtree(left,depth+1,maxdepth=5)
-        righttree=self.buildtree(right,depth+1,maxdepth=5)
+                xright.append(x[i])
+                yright.append(y[i])
+        lefttree=self.buildtree(x=xleft,y=yleft,depth=depth+1,maxdepth=5)
+        righttree=self.buildtree(x=xright,y=yright,depth=depth+1,maxdepth=5)
         return Node(feature=feature,left=lefttree,right=righttree)
     
-def predict(tree,test):
+def predict(tree, test):
     if tree.value is not None:
         return tree.value
-    feature=tree.feature
-    print(feature)
-    if test[feature]==0:
-        return predict(tree.left,test)
+    feature_index = tree.feature
+    if test[feature_index] == 0:
+        return predict(tree.left, test)
     else:
-        return predict(tree.right,test)
+        return predict(tree.right, test)
 n=Node()
-tree=n.buildtree(examplebuilding(),depth=0)
-test={
-    'skill': 'Routing',
-    'teamwork': 0,
-    'alone': 1,
-    'coding-based': 0,
-    'managerial-based': 1,
-    'remote': 0,
-    'in-office': 1
-}
+x,y=makingxandy()
+tree=n.buildtree(x,y,depth=0)
+skillmap=skillencoding()
+#{'rolename': 'Project Manager', 'category': 'Leadership & Management', 'skill': 'Strategic Planning',
+# 'teamwork': 1, 'alone': 0, 'coding-based': 0, 'managerial-based': 1, 'remote': 0, 'in-office': 1}]
+skill_id=skillmap["Azure"]
+test=[skill_id,1,0,1,0,0,1]
 print(predict(tree,test))
 #gini,feature=n.splitdata(examplebuilding())
 #print("gini",gini)
