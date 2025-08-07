@@ -138,9 +138,12 @@ def examplebuilding():
                     "remote":1 if "remote" in role["preferences"] else 0,
                     "in-office":1 if "in-office" in role["preferences"] else 0
                     })
+    for i in examples:
+        if i["category"]=="Cloud & DevOps":
+            print(i)
     return examples 
 #print(examplebuilding())
-
+examplebuilding()
 def skillencoding():
     skill_id={}
     count=0
@@ -158,12 +161,15 @@ def makingxandy():
     y=[]
     examples=examplebuilding()
     skillids=skillencoding()
+    length=len(skillids)
     for i in examples:
         role=i["rolename"]
         skill=i["skill"]
+        skillvector=[0]*length
         if skill in skillids:
-            skillid=skillids[skill]
-        l=[skillid,i["teamwork"],i["alone"],i["coding-based"],i["managerial-based"],i["remote"],i["in-office"]]
+            skillindex=skillids[skill]
+            skillvector[skillindex]=1
+        l=[skillvector,i["teamwork"],i["alone"],i["coding-based"],i["managerial-based"],i["remote"],i["in-office"]]
         x.append(l)
         y.append(role)
     return(x,y)
@@ -195,6 +201,8 @@ class Node:
     def splitdata(self,x,y):
         bestgini=10
         bestfeature=None
+        if not x:
+            return float('inf'),None
         for featureindex in range(len(x[0])):
             xleft,xright,yleft,yright=[],[],[],[]
             for i in range(len(x)):
@@ -225,24 +233,60 @@ class Node:
         k=set(l.keys())
         if len(k)==1:
             return Node(value=list(k)[0])
+        xleft,xright,yleft,yright=[],[],[],[]
         if depth>=maxdepth:
             common=max(l, key=l.get)
             return Node(value=common)
-        gini,feature=self.splitdata(x,y)
-        if feature is None:
-            common=max(l,key=l.get)
-            return Node(value=common)
-        xleft,xright,yleft,yright=[],[],[],[]
-        for i in range(len(x)):
-            if x[i][feature]==0:
-                xleft.append(x[i])
-                yleft.append(y[i])
+        if depth==0:
+            bestgini=float('inf')
+            bestskill=None
+            bestxleft,bestyleft=[],[]
+            bestxright,bestyright=[],[]
+            skillfeaturecount=len(x[0])-6
+            for featureindex in range(skillfeaturecount):
+                xleft,xright,yleft,yright=[],[],[],[]
+                for i in range(len(x)):
+                    if x[i][featureindex]==1:
+                        xleft.append(x[i])
+                        yleft.append(y[i])
+                    else:
+                        xright.append(x[i])
+                        yright.append(y[i])
+                if len(xleft)==0 or len(xright)==0:
+                    continue
+                leftgini=self.ginicalc(yleft)
+                rightgini=self.ginicalc(yright)
+                combinedgini=(len(yleft)/len(y)) * leftgini + (len(yright)/len(y)) * rightgini
+                if combinedgini<bestgini:
+                    bestgini=combinedgini
+                    bestskill=featureindex
+                    bestxleft,bestyleft=xleft,yleft
+                    bestxright,bestyright=xright,yright
+            if bestskill is not None:
+                lefttree=self.buildtree(bestxleft,bestyleft,depth+1,maxdepth=5)
+                righttree=self.buildtree(bestxright,bestyright,depth+1,maxdepth=5)
+                return Node(feature=0,left=lefttree,right=righttree)
             else:
-                xright.append(x[i])
-                yright.append(y[i])
-        lefttree=self.buildtree(x=xleft,y=yleft,depth=depth+1,maxdepth=5)
-        righttree=self.buildtree(x=xright,y=yright,depth=depth+1,maxdepth=5)
-        return Node(feature=feature,left=lefttree,right=righttree)
+                common=max(l, key=l.get)
+                return Node(value=common)
+        else:
+            if not x:
+                common=max(l, key=l.get)
+                return Node(value=common)
+            gini,feature=self.splitdata(x,y)
+            if feature is None:
+                common=max(l,key=l.get)
+                return Node(value=common)
+            for i in range(len(x)):
+                if x[i][feature]==0:
+                   xleft.append(x[i])
+                   yleft.append(y[i])
+                else:
+                   xright.append(x[i])
+                   yright.append(y[i])
+            lefttree=self.buildtree(x=xleft,y=yleft,depth=depth+1,maxdepth=5)
+            righttree=self.buildtree(x=xright,y=yright,depth=depth+1,maxdepth=5)
+            return Node(feature=feature,left=lefttree,right=righttree)
     
 def predict(tree, test):
     if tree.value is not None:
@@ -256,11 +300,12 @@ n=Node()
 x,y=makingxandy()
 tree=n.buildtree(x,y,depth=0)
 skillmap=skillencoding()
+test=[0]*len(skillmap)
 #{'rolename': 'Project Manager', 'category': 'Leadership & Management', 'skill': 'Strategic Planning',
 # 'teamwork': 1, 'alone': 0, 'coding-based': 0, 'managerial-based': 1, 'remote': 0, 'in-office': 1}]
-skill_id=skillmap["Azure"]
-test=[skill_id,1,0,1,0,0,1]
-print(predict(tree,test))
+test[skillmap["Figma"]]=1
+test+=[1,0,1,0,0,1]
+#print(predict(tree,test))
 #gini,feature=n.splitdata(examplebuilding())
 #print("gini",gini)
 #print("feature",feature)
