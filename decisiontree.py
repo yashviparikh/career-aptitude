@@ -1,6 +1,7 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import LabelEncoder
 import numpy as np
 tech_skill_preferences_data = {
     "Programming": {
@@ -314,10 +315,8 @@ x,y=makingxandy()
 #gini,feature=n.splitdata(examplebuilding())
 #print("gini",gini)
 #print("feature",feature)
-def usinginbuilttree(x,y):
-    import numpy as np
 
-def usinginbuilttree(x, y, top_n=5):
+def usinginbuilttree(x, y,label_encoder):
     x_train, x_test, y_train, y_test = train_test_split(
         x, y, random_state=42, test_size=0.4, stratify=y
     )
@@ -334,14 +333,18 @@ def usinginbuilttree(x, y, top_n=5):
     print("Train Accuracy:", model.score(x_train, y_train))
     print("Test Accuracy:", accuracy_score(y_test, y_pred))
 
-    # Top-N for first test sample
-    probs = model.predict_proba([x_test[25]])[0]
-    top_indices = np.argsort(probs)[-top_n:][::-1]
-    top_roles = [(model.classes_[i], probs[i]) for i in top_indices]
+    y_proba = model.predict_proba(x_test)
+    top5_correct = 0
 
-    print("Actual:", y_test[25])
-    print("Top Recommendations:")
-    for role, p in top_roles:
-        print(f"  {role}: {p:.2f}")
+    for i, probs in enumerate(y_proba):
+        top5_idx = np.argsort(probs)[-5:][::-1]   # top-5 indices
+        top5_labels = label_encoder.inverse_transform(top5_idx)
+        if y_test[i] in top5_labels:
+            top5_correct += 1
 
-usinginbuilttree(x,y)
+    top5_acc = top5_correct / len(y_test)
+    print("Top-1 Accuracy:", accuracy_score(y_test, model.predict(x_test)))
+    print("Top-5 Accuracy:", top5_acc)
+label_encoder = LabelEncoder()
+y_encoded = label_encoder.fit_transform(y)
+usinginbuilttree(x,y,label_encoder)
