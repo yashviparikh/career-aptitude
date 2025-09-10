@@ -1,3 +1,7 @@
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+import numpy as np
 tech_skill_preferences_data = {
     "Programming": {
         "skills": ["Python", "JavaScript", "Java", "C++", "Ruby", "Go", "Rust", "C#", "Perl", "Kotlin", "Swift"],
@@ -138,12 +142,12 @@ def examplebuilding():
                     "remote":1 if "remote" in role["preferences"] else 0,
                     "in-office":1 if "in-office" in role["preferences"] else 0
                     })
-    for i in examples:
-        if i["category"]=="Cloud & DevOps":
-            print(i)
+    # for i in examples:
+    #     if i["category"]=="Cloud & DevOps":
+    #         print(i)
     return examples 
 #print(examplebuilding())
-examplebuilding()
+#examplebuilding()
 def skillencoding():
     skill_id={}
     count=0
@@ -169,11 +173,12 @@ def makingxandy():
         if skill in skillids:
             skillindex=skillids[skill]
             skillvector[skillindex]=1
-        l=[skillvector,i["teamwork"],i["alone"],i["coding-based"],i["managerial-based"],i["remote"],i["in-office"]]
+        l = skillvector + [i["teamwork"], i["alone"], i["coding-based"], i["managerial-based"], i["remote"], i["in-office"]]
         x.append(l)
         y.append(role)
     return(x,y)
 #print(makingxandy())
+makingxandy()
 
 class Node:
     def __init__(self,feature=None,threshold=None,left=None,right=None,value=None):
@@ -265,7 +270,7 @@ class Node:
             if bestskill is not None:
                 lefttree=self.buildtree(bestxleft,bestyleft,depth+1,maxdepth=5)
                 righttree=self.buildtree(bestxright,bestyright,depth+1,maxdepth=5)
-                return Node(feature=0,left=lefttree,right=righttree)
+                return Node(feature=bestskill,left=lefttree,right=righttree)
             else:
                 common=max(l, key=l.get)
                 return Node(value=common)
@@ -298,14 +303,45 @@ def predict(tree, test):
         return predict(tree.right, test)
 n=Node()
 x,y=makingxandy()
-tree=n.buildtree(x,y,depth=0)
-skillmap=skillencoding()
-test=[0]*len(skillmap)
-#{'rolename': 'Project Manager', 'category': 'Leadership & Management', 'skill': 'Strategic Planning',
-# 'teamwork': 1, 'alone': 0, 'coding-based': 0, 'managerial-based': 1, 'remote': 0, 'in-office': 1}]
-test[skillmap["Figma"]]=1
-test+=[1,0,1,0,0,1]
-#print(predict(tree,test))
+# tree=n.buildtree(x,y,depth=0)
+# skillmap=skillencoding()
+# test=[0]*len(skillmap)
+# #{'rolename': 'Project Manager', 'category': 'Leadership & Management', 'skill': 'Strategic Planning',
+# # 'teamwork': 1, 'alone': 0, 'coding-based': 0, 'managerial-based': 1, 'remote': 0, 'in-office': 1}]
+# test[skillmap["Figma"]]=1
+# test+=[1,0,1,0,0,1]
+# print(predict(tree,test))
 #gini,feature=n.splitdata(examplebuilding())
 #print("gini",gini)
 #print("feature",feature)
+def usinginbuilttree(x,y):
+    import numpy as np
+
+def usinginbuilttree(x, y, top_n=5):
+    x_train, x_test, y_train, y_test = train_test_split(
+        x, y, random_state=42, test_size=0.4, stratify=y
+    )
+    model = RandomForestClassifier(
+        n_estimators=200,
+        max_depth=10,
+        class_weight="balanced",
+        random_state=42
+    )
+    model.fit(x_train, y_train)
+
+    # Evaluate
+    y_pred = model.predict(x_test)
+    print("Train Accuracy:", model.score(x_train, y_train))
+    print("Test Accuracy:", accuracy_score(y_test, y_pred))
+
+    # Top-N for first test sample
+    probs = model.predict_proba([x_test[25]])[0]
+    top_indices = np.argsort(probs)[-top_n:][::-1]
+    top_roles = [(model.classes_[i], probs[i]) for i in top_indices]
+
+    print("Actual:", y_test[25])
+    print("Top Recommendations:")
+    for role, p in top_roles:
+        print(f"  {role}: {p:.2f}")
+
+usinginbuilttree(x,y)
