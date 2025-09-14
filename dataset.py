@@ -5,41 +5,59 @@ tech_skill_preferences_data = {
                 "roles": [
                     {
                         "name": "Software Engineer",
-                        "skills": ["Python", "Java", "C++", "Git", "Data Structures"],
-                        "preferences": ["teamwork", "coding-based", "remote"]
+                        "skills": [
+                            "Python", "JavaScript", "Java", "C++", "Ruby", "Go", "Rust",
+                            "C#", "Perl", "Kotlin", "Swift"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "remote"],
                     },
                     {
                         "name": "Backend Developer",
-                        "skills": ["Java", "C#", "SQL", "Spring Boot", "APIs"],
-                        "preferences": ["alone", "coding-based", "remote"]
+                        "skills": [
+                            "Python", "JavaScript", "Java", "C++", "Ruby", "Go", "Rust",
+                            "C#", "Perl", "Kotlin", "Swift"
+                        ],
+                        "preferences": ["alone", "coding-based", "remote"],
                     },
                     {
                         "name": "Full Stack Developer",
-                        "skills": ["JavaScript", "Python", "HTML", "CSS", "React", "Node.js"],
-                        "preferences": ["teamwork", "coding-based", "remote or in-office"]
+                        "skills": [
+                            "Python", "JavaScript", "Java", "C++", "Ruby", "Go", "Rust",
+                            "C#", "Perl", "Kotlin", "Swift"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "remote or in-office"],
                     },
-                ],
+                ]
             },
             "Mobile Development": {
                 "roles": [
                     {
                         "name": "Mobile App Developer",
-                        "skills": ["Java", "Kotlin", "Swift", "React Native"],
-                        "preferences": ["teamwork", "coding-based", "remote or in-office"]
+                        "skills": [
+                            "Python", "JavaScript", "Java", "C++", "Ruby", "Go", "Rust",
+                            "C#", "Perl", "Kotlin", "Swift"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "remote or in-office"],
                     },
                     {
                         "name": "iOS Developer",
-                        "skills": ["Swift", "Objective-C", "Xcode"],
-                        "preferences": ["teamwork", "coding-based", "remote or in-office"]
+                        "skills": [
+                            "Python", "JavaScript", "Java", "C++", "Ruby", "Go", "Rust",
+                            "C#", "Perl", "Kotlin", "Swift"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "remote or in-office"],
                     },
                     {
                         "name": "Android Developer",
-                        "skills": ["Java", "Kotlin", "Android Studio"],
-                        "preferences": ["alone", "coding-based", "remote or in-office"]
+                        "skills": [
+                            "Python", "JavaScript", "Java", "C++", "Ruby", "Go", "Rust",
+                            "C#", "Perl", "Kotlin", "Swift"
+                        ],
+                        "preferences": ["alone", "coding-based", "remote or in-office"],
                     },
-                ],
+                ]
             },
-        },
+        }
     },
 
     "Data Analysis & Visualization": {
@@ -48,36 +66,51 @@ tech_skill_preferences_data = {
                 "roles": [
                     {
                         "name": "Data Analyst",
-                        "skills": ["SQL", "Excel", "Power BI", "Data Cleaning"],
-                        "preferences": ["alone", "coding-based", "remote or in-office"]
+                        "skills": [
+                            "Excel", "Tableau", "Power BI", "SQL", "Python (Pandas/NumPy)", "R",
+                            "Matplotlib", "Seaborn", "Data Wrangling", "Data Cleaning", "ETL"
+                        ],
+                        "preferences": ["alone", "coding-based", "remote or in-office"],
                     },
                     {
                         "name": "Business Intelligence Analyst",
-                        "skills": ["Tableau", "Power BI", "SQL", "Excel"],
-                        "preferences": ["teamwork", "managerial-based", "in-office"]
+                        "skills": [
+                            "Excel", "Tableau", "Power BI", "SQL", "Python (Pandas/NumPy)", "R",
+                            "Matplotlib", "Seaborn", "Data Wrangling", "Data Cleaning", "ETL"
+                        ],
+                        "preferences": ["teamwork", "managerial-based", "in-office"],
                     },
                     {
                         "name": "Data Scientist",
-                        "skills": ["Python", "R", "Pandas", "NumPy", "Machine Learning"],
-                        "preferences": ["alone", "coding-based", "remote"]
+                        "skills": [
+                            "Excel", "Tableau", "Power BI", "SQL", "Python (Pandas/NumPy)", "R",
+                            "Matplotlib", "Seaborn", "Data Wrangling", "Data Cleaning", "ETL"
+                        ],
+                        "preferences": ["alone", "coding-based", "remote"],
                     },
-                ],
+                ]
             },
             "Business Analytics": {
                 "roles": [
                     {
                         "name": "Operations Analyst",
-                        "skills": ["Excel", "SQL", "Process Mapping"],
-                        "preferences": ["teamwork", "managerial-based", "in-office"]
+                        "skills": [
+                            "Excel", "Tableau", "Power BI", "SQL", "Python (Pandas/NumPy)", "R",
+                            "Matplotlib", "Seaborn", "Data Wrangling", "Data Cleaning", "ETL"
+                        ],
+                        "preferences": ["teamwork", "managerial-based", "in-office"],
                     },
                     {
                         "name": "Marketing Analyst",
-                        "skills": ["SQL", "Google Analytics", "Excel", "Tableau"],
-                        "preferences": ["teamwork", "coding-based", "remote or in-office"]
+                        "skills": [
+                            "Excel", "Tableau", "Power BI", "SQL", "Python (Pandas/NumPy)", "R",
+                            "Matplotlib", "Seaborn", "Data Wrangling", "Data Cleaning", "ETL"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "remote or in-office"],
                     },
-                ],
+                ]
             },
-        },
+        }
     },
 
     "Cloud & DevOps": {
@@ -86,22 +119,34 @@ tech_skill_preferences_data = {
                 "roles": [
                     {
                         "name": "Cloud Engineer",
-                        "skills": ["AWS", "Azure", "Linux Administration", "Terraform"],
-                        "preferences": ["teamwork", "coding-based", "remote"]
+                        "skills": [
+                            "AWS", "Azure", "Google Cloud", "Kubernetes", "Docker", "Terraform",
+                            "CI/CD", "Ansible", "Jenkins", "Linux Administration", "Cloud Security",
+                            "Serverless Architecture"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "remote"],
                     },
                     {
                         "name": "DevOps Engineer",
-                        "skills": ["Docker", "Kubernetes", "CI/CD", "Jenkins", "Ansible"],
-                        "preferences": ["alone", "coding-based", "remote or in-office"]
+                        "skills": [
+                            "AWS", "Azure", "Google Cloud", "Kubernetes", "Docker", "Terraform",
+                            "CI/CD", "Ansible", "Jenkins", "Linux Administration", "Cloud Security",
+                            "Serverless Architecture"
+                        ],
+                        "preferences": ["alone", "coding-based", "remote or in-office"],
                     },
                     {
                         "name": "Site Reliability Engineer (SRE)",
-                        "skills": ["Monitoring", "AWS", "Kubernetes", "Incident Response"],
-                        "preferences": ["teamwork", "coding-based", "remote"]
+                        "skills": [
+                            "AWS", "Azure", "Google Cloud", "Kubernetes", "Docker", "Terraform",
+                            "CI/CD", "Ansible", "Jenkins", "Linux Administration", "Cloud Security",
+                            "Serverless Architecture"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "remote"],
                     },
-                ],
-            },
-        },
+                ]
+            }
+        }
     },
 
     "Networking & Security": {
@@ -110,36 +155,56 @@ tech_skill_preferences_data = {
                 "roles": [
                     {
                         "name": "Cybersecurity Analyst",
-                        "skills": ["Network Security", "Incident Response", "Firewalls"],
-                        "preferences": ["teamwork", "coding-based", "remote"]
+                        "skills": [
+                            "Network Security", "Routing", "Firewall Configuration", "VPN Setup",
+                            "Cryptography", "Penetration Testing", "Incident Response",
+                            "Disaster Recovery", "Cyber Threat Intelligence", "Wireless Networking"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "remote"],
                     },
                     {
                         "name": "Penetration Tester",
-                        "skills": ["Penetration Testing", "Kali Linux", "Exploits", "Cryptography"],
-                        "preferences": ["alone", "coding-based", "remote or in-office"]
+                        "skills": [
+                            "Network Security", "Routing", "Firewall Configuration", "VPN Setup",
+                            "Cryptography", "Penetration Testing", "Incident Response",
+                            "Disaster Recovery", "Cyber Threat Intelligence", "Wireless Networking"
+                        ],
+                        "preferences": ["alone", "coding-based", "remote or in-office"],
                     },
                     {
                         "name": "Security Engineer",
-                        "skills": ["Cryptography", "Firewall Configuration", "Threat Modelling"],
-                        "preferences": ["teamwork", "coding-based", "in-office"]
+                        "skills": [
+                            "Network Security", "Routing", "Firewall Configuration", "VPN Setup",
+                            "Cryptography", "Penetration Testing", "Incident Response",
+                            "Disaster Recovery", "Cyber Threat Intelligence", "Wireless Networking"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "in-office"],
                     },
-                ],
+                ]
             },
             "Networking & IT Support": {
                 "roles": [
                     {
                         "name": "Network Administrator",
-                        "skills": ["Routing", "VPN Setup", "Wireless Networking", "Firewall Configuration"],
-                        "preferences": ["teamwork", "coding-based", "in-office"]
+                        "skills": [
+                            "Network Security", "Routing", "Firewall Configuration", "VPN Setup",
+                            "Cryptography", "Penetration Testing", "Incident Response",
+                            "Disaster Recovery", "Cyber Threat Intelligence", "Wireless Networking"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "in-office"],
                     },
                     {
                         "name": "System Administrator",
-                        "skills": ["Linux", "Windows Server", "Disaster Recovery", "Scripting"],
-                        "preferences": ["alone", "coding-based", "in-office"]
+                        "skills": [
+                            "Network Security", "Routing", "Firewall Configuration", "VPN Setup",
+                            "Cryptography", "Penetration Testing", "Incident Response",
+                            "Disaster Recovery", "Cyber Threat Intelligence", "Wireless Networking"
+                        ],
+                        "preferences": ["alone", "coding-based", "in-office"],
                     },
-                ],
+                ]
             },
-        },
+        }
     },
 
     "UI/UX & Design": {
@@ -148,22 +213,34 @@ tech_skill_preferences_data = {
                 "roles": [
                     {
                         "name": "UI Designer",
-                        "skills": ["UI Design", "Figma", "Sketch", "Adobe XD"],
-                        "preferences": ["teamwork", "coding-based", "remote"]
+                        "skills": [
+                            "UI/UX Design", "Figma", "Sketch", "Adobe XD", "Wireframing",
+                            "User Research", "Prototyping", "Interaction Design", "User Testing",
+                            "Motion Design"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "remote"],
                     },
                     {
                         "name": "UX Researcher",
-                        "skills": ["User Research", "Prototyping", "Wireframing"],
-                        "preferences": ["teamwork", "coding-based", "remote"]
+                        "skills": [
+                            "UI/UX Design", "Figma", "Sketch", "Adobe XD", "Wireframing",
+                            "User Research", "Prototyping", "Interaction Design", "User Testing",
+                            "Motion Design"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "remote"],
                     },
                     {
                         "name": "Interaction Designer",
-                        "skills": ["Interaction Design", "Motion Design", "User Testing"],
-                        "preferences": ["alone", "coding-based", "in-office"]
+                        "skills": [
+                            "UI/UX Design", "Figma", "Sketch", "Adobe XD", "Wireframing",
+                            "User Research", "Prototyping", "Interaction Design", "User Testing",
+                            "Motion Design"
+                        ],
+                        "preferences": ["alone", "coding-based", "in-office"],
                     },
-                ],
-            },
-        },
+                ]
+            }
+        }
     },
 
     "Blockchain & Web3": {
@@ -172,22 +249,31 @@ tech_skill_preferences_data = {
                 "roles": [
                     {
                         "name": "Blockchain Developer",
-                        "skills": ["Solidity", "Ethereum", "Smart Contracts"],
-                        "preferences": ["teamwork", "coding-based", "remote"]
+                        "skills": [
+                            "Blockchain", "Smart Contracts", "Ethereum", "Solidity", "Web3",
+                            "Hyperledger", "DApps", "DeFi", "NFTs", "Consensus Algorithms"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "remote"],
                     },
                     {
                         "name": "Web3 Developer",
-                        "skills": ["Web3.js", "DApps", "DeFi"],
-                        "preferences": ["teamwork", "coding-based", "remote or in-office"]
+                        "skills": [
+                            "Blockchain", "Smart Contracts", "Ethereum", "Solidity", "Web3",
+                            "Hyperledger", "DApps", "DeFi", "NFTs", "Consensus Algorithms"
+                        ],
+                        "preferences": ["teamwork", "coding-based", "remote or in-office"],
                     },
                     {
                         "name": "Smart Contract Developer",
-                        "skills": ["Solidity", "Ethereum", "Consensus Algorithms"],
-                        "preferences": ["alone", "coding-based", "remote"]
+                        "skills": [
+                            "Blockchain", "Smart Contracts", "Ethereum", "Solidity", "Web3",
+                            "Hyperledger", "DApps", "DeFi", "NFTs", "Consensus Algorithms"
+                        ],
+                        "preferences": ["alone", "coding-based", "remote"],
                     },
-                ],
-            },
-        },
+                ]
+            }
+        }
     },
 
     "Leadership & Management": {
@@ -196,21 +282,33 @@ tech_skill_preferences_data = {
                 "roles": [
                     {
                         "name": "Product Manager",
-                        "skills": ["Agile", "Scrum", "Product Management"],
-                        "preferences": ["teamwork", "managerial-based", "in-office"]
+                        "skills": [
+                            "Agile", "Scrum", "Project Management", "Tech Leadership",
+                            "Product Management", "Risk Management", "Team Building",
+                            "Communication", "Strategic Planning"
+                        ],
+                        "preferences": ["teamwork", "managerial-based", "in-office"],
                     },
                     {
                         "name": "Tech Lead",
-                        "skills": ["Team Building", "Communication", "Strategic Planning"],
-                        "preferences": ["teamwork", "managerial-based", "remote or in-office"]
+                        "skills": [
+                            "Agile", "Scrum", "Project Management", "Tech Leadership",
+                            "Product Management", "Risk Management", "Team Building",
+                            "Communication", "Strategic Planning"
+                        ],
+                        "preferences": ["teamwork", "managerial-based", "remote or in-office"],
                     },
                     {
                         "name": "Project Manager",
-                        "skills": ["Risk Management", "Project Management", "Agile"],
-                        "preferences": ["teamwork", "managerial-based", "in-office"]
+                        "skills": [
+                            "Agile", "Scrum", "Project Management", "Tech Leadership",
+                            "Product Management", "Risk Management", "Team Building",
+                            "Communication", "Strategic Planning"
+                        ],
+                        "preferences": ["teamwork", "managerial-based", "in-office"],
                     },
-                ],
-            },
-        },
+                ]
+            }
+        }
     },
 }

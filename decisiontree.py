@@ -109,7 +109,7 @@ class Node:
 
         return best_feature
 
-    def buildtree(self, X, y, depth=0, maxdepth=5):
+    def buildtree(self, X, y, length,depth=0, maxdepth=5):
         X = np.array(X)
         y = np.array(y)
         if len(y) == 0:
@@ -186,8 +186,13 @@ def predict(tree, test,k=5):
         return votes.most_common(k)
 def predicttop5(tree, test, skillmap, examples, k=5):
     def traverse(node):
-        if isinstance(node.value, Counter):
-            return node.value
+        if node.value is not None:
+            if isinstance(node.value, Counter):
+                return node.value
+            else: 
+                return Counter({node.value:1})
+        if node.feature is None:
+            return Counter
         if test[node.feature] == 0:
             return traverse(node.left)
         else:
@@ -208,19 +213,30 @@ def predicttop5(tree, test, skillmap, examples, k=5):
     top_roles = sorted(role_scores.items(), key=lambda x: x[1], reverse=True)
     return top_roles[:k]
 
+pref_map = {
+    'teamwork': 0, 'alone': 0, 'coding-based': 0, 'managerial-based': 0, 'remote': 0, 'in-office': 0
+}
 
-n = Node()
-x, y,length = makingxandy()
-skilltree = n.buildtree(x, y, depth=0, maxdepth=5)
-skillmap = skillencoding()
-test = [0]*len(skillmap)
-for s in ["Network Security","AWS","Figma","Python","Java","Docker","Penetration Testing","Kubernetes"]:
-    test[skillmap[s]] = 1
-test += [0,1,1,0,1,1]
-finaltree=refineleaves(skilltree,x,y,length)
-#print("Predicted Role:", predict(finaltree, test,k=10))
-examples = examplebuilding()
-top5 = predicttop5(finaltree, test, skillmap, examples, k=10)
-print("Top-5 Predicted Roles:", top5)
-
+def recommendscratch(skills,pref):
+    n = Node()
+    x, y,length = makingxandy()
+    skilltree = n.buildtree(x, y,length, depth=0, maxdepth=5)
+    skillmap = skillencoding()
+    test = [0]*len(skillmap)
+    for s in skills:
+        if s in skills:
+            test[skillmap[s]] = 1
+    pref_vector = [0] * len(pref_map)
+    if pref:
+        for p in pref:
+            if p in pref_map:
+                pref_vector[pref_map[p]] = 1
+    test += pref_vector
+    finaltree=refineleaves(skilltree,x,y,length)
+    #print("Predicted Role:", predict(finaltree, test,k=10))
+    examples = examplebuilding()
+    top5 = predicttop5(finaltree, test, skillmap, examples, k=10)
+    return top5
+#print("Top-5 Predicted Roles:", top5)
+#print(recommendscratch(skills=["Figma","Java","Python","Wireframing","Docker"],pref=['Coding-based', 'Remote', 'Team-based']))
 

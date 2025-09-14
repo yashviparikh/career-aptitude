@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify,current_app
 from db import tech_skills_collection
 from careers import recommend_tech_careers
 from roadmap import addurl
-
+from decisiontree import recommendscratch
 app = Flask(__name__)
 
 def getdata():
@@ -26,8 +26,22 @@ def index():
         if not selected_skills:
             return render_template("index.html", skills=get_all_skills(), error="no skill selected")
         preferences = request.form.getlist("preferences")
-        careers = recommend_tech_careers(selected_skills, include_scores=False, filter_preferences=preferences)
+        #print(preferences)
+        method=request.form.get("method")
+
+        if method=="simple":
+            careers = recommend_tech_careers(selected_skills, include_scores=False, filter_preferences=preferences)
+        elif method=="inbuilt":
+            pass
+        elif method=="scratch":
+            print(selected_skills,preferences)
+            careers=recommendscratch(selected_skills,preferences)
+            careers = [c[0] for c in careers]
+        else:
+            careers=[]
+
         careers_with_url = addurl(careers)
+        print(careers_with_url)
         return render_template("results.html", careers=careers_with_url)
     return render_template("index.html", skills=get_all_skills())
 
