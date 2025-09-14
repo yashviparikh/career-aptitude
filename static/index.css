@@ -72,6 +72,12 @@ button:hover {
     background-color: #0056b3;
 }
 
+#buttons {
+    display: flex;
+    justify-content: center;  /* Centers horizontally */
+    gap: 15px;                /* Adds spacing between buttons */
+    margin-top: 20px;
+}
 #selected-suggestions {
     margin: 20px 0;
     padding: 15px;

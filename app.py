@@ -3,6 +3,7 @@ from db import tech_skills_collection
 from careers import recommend_tech_careers
 from roadmap import addurl
 from decisiontree import recommendscratch
+from inbuilt import recommendinbuilt
 app = Flask(__name__)
 
 def getdata():
@@ -32,16 +33,14 @@ def index():
         if method=="simple":
             careers = recommend_tech_careers(selected_skills, include_scores=False, filter_preferences=preferences)
         elif method=="inbuilt":
-            pass
+            careers=recommendinbuilt(selected_skills,preferences)
         elif method=="scratch":
-            print(selected_skills,preferences)
             careers=recommendscratch(selected_skills,preferences)
             careers = [c[0] for c in careers]
         else:
             careers=[]
 
         careers_with_url = addurl(careers)
-        print(careers_with_url)
         return render_template("results.html", careers=careers_with_url)
     return render_template("index.html", skills=get_all_skills())
 

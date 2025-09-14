@@ -80,9 +80,50 @@ def usinginbuilttree(x, y,label_encoder):
             top5_correct += 1
 
     top5_acc = top5_correct / len(y_test)
-    print("Top-1 Accuracy:", accuracy_score(y_test, model.predict(x_test)))
-    print("Top-5 Accuracy:", top5_acc)
-label_encoder = LabelEncoder()
-x,y=makingxandy()
-y_encoded = label_encoder.fit_transform(y)
-usinginbuilttree(x,y,label_encoder)
+    # print("Top-1 Accuracy:", accuracy_score(y_test, model.predict(x_test)))
+    # print("Top-5 Accuracy:", top5_acc)
+# label_encoder = LabelEncoder()
+# x,y=makingxandy()
+#y_encoded = label_encoder.fit_transform(y)
+# usinginbuilttree(x,y,label_encoder)
+
+def recommendinbuilt(skills,preferences):
+    label_encoder = LabelEncoder()
+    x,y=makingxandy()
+    y_encoded = label_encoder.fit_transform(y)
+    model = RandomForestClassifier(
+        n_estimators=200,
+        max_depth=10,
+        class_weight="balanced",
+        random_state=42
+    )
+    model.fit(x, y_encoded)
+
+    # Step 3: Encode user input into feature vector
+    skillids = skillencoding()
+    test_vector = [0] * len(skillids)
+
+    # Mark selected skills
+    for s in skills:
+        if s in skillids:
+            test_vector[skillids[s]] = 1
+
+    # Add preferences (same encoding style as dataset)
+    pref_vector = [
+        1 if "Team-based" in preferences else 0,
+        1 if "Alone" in preferences else 0,
+        1 if "Coding-based" in preferences else 0,
+        1 if "Managerial-based" in preferences else 0,
+        1 if "Remote" in preferences else 0,
+        1 if "In-office" in preferences else 0
+    ]
+
+    test_vector = test_vector + pref_vector
+
+    # Step 4: Predict top 5 roles
+    probs = model.predict_proba([test_vector])[0]
+    top5_idx = np.argsort(probs)[-5:][::-1]
+    top5_roles = label_encoder.inverse_transform(top5_idx)
+
+    return top5_roles.tolist()
+#print(recommendinbuilt(skills=["Figma","Java","Python","Wireframing","Docker"],preferences=['Coding-based', 'Remote', 'Team-based']))
